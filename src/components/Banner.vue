@@ -1,41 +1,39 @@
-<script>
-export default {
-  name: "App",
-  components: {},
-};
-</script>
-
 <template>
-  <div class="colorNav">
-  <header>
-    <Tool>
-      <template #start>
-        <RouterLink to="/">HOME</RouterLink>
-        <RouterLink to="/">SHOP</RouterLink>
-        <RouterLink to="/">COLLECTION</RouterLink>
-        <RouterLink to="/">COLLABS</RouterLink>
-        <img class="logo" src="./assets/img/kaomojiLogo.svg" />
-      </template>
-
-      <template #end>
-        <RouterLink to="/">BLOG</RouterLink>
-        <RouterLink to="/" class="us">ABOUT US</RouterLink>
-        <RouterLink to="/"
-          ><font-awesome-icon icon="fa-regular fa-user"
-        /></RouterLink>
-        <RouterLink to="/"
-          ><img class="icon" src="./assets/img/svg/lupita.svg"
-        /></RouterLink>
-        <RouterLink to="/"
-          ><img class="icon cart" src="./assets/img/svg/cart.svg"
-        /></RouterLink>
-      </template>
-    </Tool>
-  </header>
-</div>
-  <RouterView />
-  <footer>
-    <figure class="footerLogo">
+  <swiper
+    :spaceBetween="30"
+    :centeredSlides="true"
+    :autoplay="{
+      delay: 2500,
+      disableOnInteraction: false,
+    }"
+    :pagination="{
+      clickable: true,
+    }"
+    :modules="modules"
+    class="mySwiper"
+  >
+    
+    <swiper-slide class="slide"
+      ><h1 class="title mainText">
+        WE’RE UNIQUE <span class="variation">NO MATTER</span><br />
+        HOW YOU PUT IT
+      </h1>
+      <img class="banner1" src="../assets/img/png/banner/ban1.png" />
+      <h1 class="title vertical">個性的</h1>
+      <h1 class="title litle-title">本物</h1>
+      <img class="companyBan" src="../assets/img/png/banner/chain.png" />
+    </swiper-slide>
+    <swiper-slide class="slide slide2"
+      ><h1 class="title mainText">
+        HANAMI SS2022<br />
+ <span class="variation">BUY IT NOW</span>
+      </h1>
+      <img class="banner1" src="../assets/img/png/banner/ban2.png" />
+      <h1 class="title vertical">新鮮です</h1>
+      <h1 class="title litle-title">本物</h1>
+      <img class="companyBan" src="../assets/img/png/banner/suzume.png" />
+      <a class="btnBanner" href="/"> See More</a>
+      <figure class="logoBanner">
       <svg
         viewBox="0 0 1038 737"
         fill="none"
@@ -107,184 +105,198 @@ export default {
         />
       </svg>
     </figure>
-    <figure class="socialMedia">
-      <a href="https://instagram.com/kaomoji"
-        ><img src="./assets/img/png/instagram.png"
-      /></a>
-      <a href="https://www.facebook.com/kaomoji"
-        ><img src="./assets/img/png/face.png"
-      /></a>
-      <a href="https://twitter.com/kaomoji_co"
-        ><img class="special" src="./assets/img/png/twitter.png"
-      /></a>
-      <a href="https://www.tiktok.com/@kaomoji.co"
-        ><img src="./assets/img/png/tiktok.png"
-      /></a>
-      <a href="http://discord.gg/kaomoji"
-        ><img class="special" src="./assets/img/png/disc.png"
-      /></a>
-    </figure>
-    <h3>Visit Worldwide Online Store</h3>
-    <article class="linksTerms">
-      <a href="https://www.kaomoji.co/search">Search</a>
-      <a href="https://www.kaomoji.co/pages/terms-conditions"
-        >Terms & Conditions</a
-      >
-      <a href="https://www.kaomoji.co/pages/privacy-policy">Privacy Policy</a>
-      <a href="https://www.kaomoji.co/pages/contact-us">Contact</a>
-      <a href="https://www.kaomoji.co/policies/terms-of-service"
-        >Terms of Service</a
-      >
-      <a href="https://www.kaomoji.co/policies/refund-policy">Refund policy</a>
-    </article>
-    <figure class="payments">
-      <img src="./assets/img/png/amex.png" />
-      <img src="./assets/img/png/applePay.png" />
-      <img src="./assets/img/png/gPay.png" />
-      <img src="./assets/img/png/masterRandom.png" />
-      <img src="./assets/img/png/master.png" />
-      <img src="./assets/img/png/papal.png" />
-      <img src="./assets/img/png/shop.png" />
-      <img src="./assets/img/png/visa.png" />
-    </figure>
-    <figure class="bitcoin">
-      <img src="./assets/img/png/utrust.png" />
-    </figure>
-    <p>© 2022 Kaomoji ® Official</p>
-  </footer>
+    </swiper-slide>
+    <swiper-slide class="slide slide3"
+      ><h1 class="title mainText">
+        ANNIVERSARY<br />AW2020
+      </h1>
+      <img class="cover" src="../assets/img/png/banner/ban3Over.png" />
+      <img class="banner1" src="../assets/img/png/banner/ban3.png" />
+      <h1 class="title vertical">本物</h1>
+      <h1 class="title variation">ありがとう</h1>
+      <img class="companyBan" src="../assets/img/png/banner/jujutsu.png" />
+      <img class="litlehearth" src="../assets/img/png/banner/heart.png">
+      <a class="btnBanner" href="/"> See More</a>
+      
+    </swiper-slide>
+  </swiper>
 </template>
+<script>
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from "swiper/vue";
+
+// Import Swiper styles
+import "swiper/css";
+
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+// import required modules
+import { Autoplay, Pagination, Navigation } from "swiper";
+
+export default {
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+  setup() {
+    return {
+      modules: [Autoplay, Pagination, Navigation],
+    };
+  },
+};
+</script>
 
 <style lang="scss">
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-.colorNav{
-  background-color: white;
-  height: 90px;
-}
-header {
-  display: flex;
-  justify-content: center;
-  margin-top: 5px;
-
-  a {
-    text-decoration: none;
-    color: black;
-    font-family: "Sansation";
-    margin-bottom: -10px;
-    margin-top: 10px;
+.slide {
+  position: relative;
+  height: 650px;
+  .title {
+    font-family: "SF movie bold";
+    font-size: 10em;
+    line-height: 0.8;
+    .variation {
+      font-family: "SF movie condensed bold oblique";
+      color: white;
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: black;
+    }
   }
-  .logo {
-    width: 8%;
+  .mainText {
     position: absolute;
-    left: 45.7%;
+    top: 12%;
+    left: 15%;
+    z-index: 2;
+  }
+  .vertical {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    margin-left: 76%;
+    margin-top: 3%;
+    font-size: 9.3em;
+  }
+  .banner1 {
+    width: 30%;
+    position: absolute;
+    right: 20%;
     top: 7%;
-    background-color: #fff;
-    padding: 0px 16px;
   }
-  .p-toolbar {
-    width: 95%;
-    background: transparent !important;
-    border: none !important;
-    border-radius: 0 !important;
-    border-bottom: 2px solid black !important;
+  .companyBan {
+    position: absolute;
+    z-index: -1;
+    left: 25%;
+    top: 60%;
   }
-  .p-toolbar-group-left {
-    a {
-      margin-right: 5%;
-    }
-  }
-  .p-toolbar-group-right {
-    a {
-      margin-right: 13px;
-    }
-    .fa-user,
-    .icon {
-      height: 20px;
-    }
-    .cart {
-      height: 25px;
-      margin-right: -5px;
-    }
+  .litle-title{
+    font-size: 8em;
+    position: absolute;
+    top: 57%;
+    left: 15%;
   }
 }
-
-footer {
-  background-color: #2a2929;
-  padding-bottom: 20px;
-  h3 {
-    font-family: "Aovel Light";
-    color: #fff;
-    text-align: center;
-    margin: 10px 0px;
+.slide2{
+  .mainText{
+    left: 29%;
+    top: 7%;
+    letter-spacing: 6px;
+    font-size: 11em;
   }
-  p {
-    font-family: "Aovel Light";
-    color: #fff;
-    text-align: center;
-    margin-top: 20px;
+.variation{
+  margin-left: 20%;
+}
+.banner1{
+  left: 0%;
+  width: 32%;
+  top: auto;
+  bottom: 0;
+}
+.companyBan{
+  bottom: 0;
+  top: auto;
+  height: 68%;
+  z-index: 1;
+  left: 29%;
+}
+.litle-title{
+  z-index: 2;
+  left: 30%;
+  top: 72%
+}
+.vertical{
+  margin-left: 75%;
+}
+.btnBanner{
+  position:absolute;
+  top: 56%;
+  left: 38%;
+  border: 2px solid black;
+  border-radius: 15px;
+  text-decoration: none;
+  padding: 15px 35px;
+  font-family: 'Aovel bold';
+  font-size: 1.5em;
+  color: black;  
+}
+.logoBanner{
+  width:10%;
+  position:absolute;
+  top:73%;
+  left:57%;
+}
+}
+.slide3{
+  .banner1{
+    left:10%;
+    top:8%
   }
-
-  .footerLogo {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    svg {
-      margin: 25px 0px;
-      width: 7%;
-    }
-    svg > path {
-      fill: white;
-    }
+  .cover{
+    position:absolute;
+    top:8%;
+    left:18%;
+    width:22%;
+    z-index: 1;
   }
-  .socialMedia {
-    display: flex;
-    justify-content: center;
-    a {
-      border: 3px solid white;
-      padding: 10px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50px;
-      margin: 0px 5px;
-      margin-bottom: 30px;
-      img {
-        width: 100%;
-        height: auto;
-      }
-      .special {
-        margin-top: 2px;
-      }
-    }
+  .mainText{
+  left:41%;
+  top:5%;
   }
-  .linksTerms {
-    font-family: "Aovel Bold";
-
-    text-align: center;
-    font-size: 1.5em;
-    margin-bottom: 25px;
-    a {
-      color: #fff;
-      text-decoration: none;
-      margin: 10px 10px;
-    }
+  .litlehearth{
+    position:absolute;
+    right: 29%;
+    top:28%;
   }
-  .payments {
-    display: flex;
-    justify-content: center;
-    img {
-      width: 40px;
-      height: 25px;
-      margin: 10px 7px;
-    }
+  .variation{
+    color: white;
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: black;
+      position:absolute;
+      left: 20%;
+      top:74%;
+      font-size: 8.5em;
   }
-  .bitcoin {
-    display: flex;
-    justify-content: center;
-    margin-top: 25px;
+  .companyBan{
+    right: -2%;
+    left: auto;
+    top:50%;
+    z-index: 1;
   }
+  .vertical{
+    font-size: 7em;
+    z-index: -1;
+    margin-top: 150px;
+  }
+  .btnBanner{
+  position:absolute;
+  top: 56%;
+  left: 41%;
+  border: 2px solid black;
+  border-radius: 15px;
+  text-decoration: none;
+  padding: 15px 35px;
+  font-family: 'Aovel bold';
+  font-size: 1.5em;
+  color: black;  
+}
 }
 </style>
+

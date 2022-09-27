@@ -2,12 +2,10 @@
   <swiper
     :spaceBetween="30"
     :centeredSlides="true"
+    :effect="'fade'"
     :autoplay="{
       delay: 2500,
       disableOnInteraction: false,
-    }"
-    :pagination="{
-      clickable: true,
     }"
     :modules="modules"
     class="mySwiper"
@@ -130,9 +128,10 @@ import "swiper/css";
 
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "swiper/css/effect-fade";
 
 // import required modules
-import { Autoplay, Pagination, Navigation } from "swiper";
+import { Autoplay, Pagination, Navigation, EffectFade} from "swiper";
 
 export default {
   components: {
@@ -141,7 +140,7 @@ export default {
   },
   setup() {
     return {
-      modules: [Autoplay, Pagination, Navigation],
+      modules: [Autoplay, Pagination, Navigation,EffectFade],
     };
   },
 };
@@ -149,6 +148,7 @@ export default {
 
 <style lang="scss">
 .slide {
+  background-color: white;
   position: relative;
   height: 650px;
   .title {

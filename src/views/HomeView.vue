@@ -11,6 +11,9 @@ export default {
 
 <template>
   <main>
+    
    <home></home>
   </main>
 </template>
+
+

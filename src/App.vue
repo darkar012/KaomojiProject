@@ -182,6 +182,7 @@ header {
     position: absolute;
     left: 45.7%;
     top: 7%;
+    z-index: 2;
     background-color: #fff;
     padding: 0px 16px;
   }

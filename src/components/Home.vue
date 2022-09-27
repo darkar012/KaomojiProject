@@ -11,6 +11,13 @@
 <our-products-vue></our-products-vue>
 <titleVue title="COLLECTIONS"></titleVue>
 <collectionsVue></collectionsVue>
+<figure class="finalBanner">
+<img src="../assets/img/png/end.png">
+</figure>
+<div id="scroll-container" class="scrollBottom">
+    <div id="scroll-text">本物</div>
+    <div id="scroll-text-inverse">素晴らしい</div>
+</div>
 </template>
 
 <script>
@@ -53,6 +60,19 @@ export default {
   p{
     height: auto;
       writing-mode: horizontal-tb;
+  }
+}
+
+.scrollBottom{
+  background: white !important;
+  font-size: 2em;
+  position: absolute;
+  top: 450%;
+  left: 0%;
+  width: 100%;
+  z-index: -1;
+  #scroll-text, #scroll-text-inverse{
+    color: rgba(93, 92, 92, 0.511);
   }
 }
 
@@ -158,6 +178,16 @@ margin: 0px 10px;
     -moz-transform: translateX(-100%);
     -webkit-transform: translateX(-100%);
     transform: translateX(-100%);
+  }
+}
+
+.finalBanner{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+margin-bottom: 60px;
+  img{
+    width: 60%;
   }
 }
 </style>

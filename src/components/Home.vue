@@ -10,19 +10,23 @@
 <titleVue title="OUR PRODUCTS"></titleVue>
 <our-products-vue></our-products-vue>
 <titleVue title="COLLECTIONS"></titleVue>
+<collectionsVue></collectionsVue>
 </template>
 
 <script>
 import Banner from './Banner.vue';
 import OurProductsVue from './OurProducts.vue';
 import titleVue from './title.vue';
+import collectionsVue from './collections.vue';
+
 export default {
   name: 'home',
   components: {
     Banner,
     OurProductsVue,
-    titleVue
-  }
+    titleVue,
+    collectionsVue
+}
 }
 </script>
 

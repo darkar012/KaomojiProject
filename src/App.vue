@@ -11,7 +11,7 @@ export default {
     <Tool>
       <template #start>
         <RouterLink to="/">HOME</RouterLink>
-        <RouterLink to="/">SHOP</RouterLink>
+        <RouterLink to="/shop">SHOP</RouterLink>
         <RouterLink to="/">COLLECTION</RouterLink>
         <RouterLink to="/add">ADD</RouterLink>
         <img class="logo" src="./assets/img/kaomojiLogo.svg" />

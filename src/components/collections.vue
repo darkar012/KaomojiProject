@@ -11,7 +11,6 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Navigation } from "swiper";
-import { filter } from "dom7";
 
 export default {
   components: {

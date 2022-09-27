@@ -234,6 +234,7 @@ export default {
   },
   data() {
     return {
+      producImage:"" ,
       productName: "",
       price: "",
       description: "",
@@ -293,24 +294,23 @@ export default {
       let yearProduct = document.getElementById("yearpicker");
       const productName = document.getElementById("productName");
       const price = document.getElementById("price");
-      let typeProduct = document.getElementById("typeProduct");
-      let collectionProduct = document.getElementById("collectionProduct");
+      let typeProduct = document.getElementsByClassName("p-dropdown-label");
+      var arr = Array.from(typeProduct);
       let descripProduct = document.getElementById("descriptionProduct");
 
-      const idLowerCase = productName.value.toLowerCase();
-      const id = idLowerCase.replace(/\s+/g, "-");
+      const id= productName.value.toLowerCase();
       const newProduct = {
         id: id,
         name: productName.value,
-        price: price.value + "95",
+        price: "€"+ price.value + ".95",
         year: yearProduct.value,
-        type: typeProduct.value,
-        collection: collectionProduct.value,
+        type: arr[0].value,
+        collection: arr[1].value,
         description: descripProduct.value,
-        image: this.imgURL,
+        imgUrl: this.producImage,
       };
       this.productsStore.newProduct(newProduct);
-      console.log(newProduct.name);
+      console.log(newProduct);
       productName.value = "";
       price.value = "";
       yearProduct.value = "";
@@ -319,11 +319,27 @@ export default {
       descripProduct.value = "";
     },
     readImage(e) {
-      this.reader.readAsDataURL(e.target.files[0]);
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length){
+        return;
+      }
+      this.createImage(files[0])
+      /*this.reader.readAsDataURL(e.target.files[0]);
       this.reader.addEventListener("load", () => {
         this.imgURL = this.reader.result;
         
-      });
+      });*/
+    },
+    createImage(file){
+      var reader = new FileReader();
+      var vm = this;
+      reader.onload = (e) => {
+        vm.producImage = e.target.result;
+      }
+      reader.readAsDataURL(file);
+    },
+    removeImage: function(e){
+      this.producImage ="";
     },
   },
 };

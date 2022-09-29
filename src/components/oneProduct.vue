@@ -67,8 +67,6 @@ export default {
       this.$route.params.productId
     );
   },
-  methods: {
-  },
 };
 </script>
 
@@ -83,7 +81,7 @@ export default {
   &__presentation {
     display: flex;
     flex-direction: row;
-    margin-left: 10%;
+    margin-left: 12%;
     margin-bottom: 20px;
     .productItem__image {
       width: 40%;

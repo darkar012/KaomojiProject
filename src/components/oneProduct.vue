@@ -50,13 +50,18 @@
       </div>
     </div>
   </div>
+  <userCommentVue></userCommentVue>
 </template>
 
 <script>
 import { mapStores } from "pinia";
 import { useProductsStore } from "../stores/products.js";
+import userCommentVue from "./userComment.vue";
 export default {
-  data() {
+  components:{
+userCommentVue
+  },
+    data() {
     return { actualProduct: {}, image: "" };
   },
   computed: {

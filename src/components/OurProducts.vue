@@ -7,25 +7,25 @@ export default {};
       <div class="galleryButton">
         <div class="gallery">
           <div class="gallery__item">
-            <img src="../assets/img/png/grid/clothes.png" />
+            <img src="/img/png/grid/clothes.png" />
             <div class="overlayGallery">
               <h4 class="clothes">CLOTHES</h4>
             </div>
           </div>
           <div class="gallery__item">
-            <img src="../assets/img/png/grid/bags.png" />
+            <img src="/img/png/grid/bags.png" />
             <div class="overlayGallery">
               <h4>BAGS</h4>
             </div>
           </div>
           <div class="gallery__item">
-            <img src="../assets/img/png/grid/mask.png" />
+            <img src="/img/png/grid/mask.png" />
             <div class="overlayGallery">
               <h4>MASK</h4>
             </div>
           </div>
           <div class="gallery__item">
-            <img src="../assets/img/png/grid/accesories.png" />
+            <img src="/img/png/grid/accesories.png" />
             <div class="overlayGallery">
               <h4>ACCESORIES</h4>
             </div>
@@ -114,5 +114,17 @@ export default {};
     z-index: 1;
     /* filter: brightness(0.5);*/
   }
+}
+
+@media screen and (max-width: 415px) {
+  .grid{
+    width: 100%;
+    padding-left: 25px
+  } ;
+  .gallery__item{
+    height: 250px !important;
+    grid-column-start: span 3 !important;
+  }
+  
 }
 </style>

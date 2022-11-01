@@ -1,4 +1,5 @@
 <template>
+  <section class="filters"></section>
   <section class="products" id="products">
 
     <RouterLink
@@ -34,8 +35,7 @@ export default {
   },
   computed: {
     ...mapStores(useProductsStore),
-    allProducts() {
-        
+    allProducts() {      
       return this.productsStore.getProducts;
     },
   },
@@ -43,6 +43,16 @@ export default {
     this.productsStore.loadProducts();
    
     //console.log(this.winesStore.loadWines);
+  },
+  methods: {
+    sortBy(event) {
+      let selection = event.target.value;
+      this.productsStore.sortProducts(selection);
+    },
+    filterBy(event, caller) {
+      let selection = event.target.value;
+      this.productsStore.filterProducts(selection, caller);
+    },
   },
 };
 </script>

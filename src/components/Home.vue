@@ -12,7 +12,7 @@
 <titleVue title="COLLECTIONS"></titleVue>
 <collectionsVue></collectionsVue>
 <figure class="finalBanner">
-<img src="../assets/img/png/end.png">
+<img src="../../public/img/png/end.png">
 </figure>
 <div id="scroll-container" class="scrollBottom">
     <div id="scroll-text">本物</div>
@@ -77,7 +77,7 @@ export default {
 }
 
 #scroll-container {
-  background: url("../assets/img/png/scrollLetter/doll.png");
+  background: url("/img/png/scrollLetter/doll.png");
   background-size: 100%;
   overflow: hidden;
 }
@@ -178,6 +178,18 @@ margin: 0px 10px;
     -moz-transform: translateX(-100%);
     -webkit-transform: translateX(-100%);
     transform: translateX(-100%);
+  }
+}
+
+@media screen and (max-width: 415px) {
+  .bgLetter {
+    display: none;
+  }
+  #scroll-container{
+    display: none;
+  }
+  .finalBanner > img {
+    width: 80% !important;
   }
 }
 

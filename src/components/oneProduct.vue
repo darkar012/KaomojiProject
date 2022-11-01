@@ -6,12 +6,12 @@
           class="productItem__image"
           data-aos="zoom-in-right"
           data-aos-mirror="true"
+          :style="{
+        'background-image': `url(${actualProduct.imgUrl})`,
+        width: '100%',
+        height: '100%',
+      }"
         >
-          <img
-            alt=""
-            class="productItem__mainImage"
-            :src="actualProduct.imgUrl"
-          />
         </div>
         <div class="productItem__introduction">
           <div
@@ -81,14 +81,13 @@ export default {
   &__presentation {
     display: flex;
     flex-direction: row;
-    margin-left: 12%;
     margin-bottom: 20px;
+    width: 100%;
     .productItem__image {
-      width: 40%;
+      background-size: cover ;
+      background-position: center;
       border-radius: 50px;
-      img {
-        width: 100%;        
-      }
+     
     }
 
     button {
@@ -102,6 +101,7 @@ export default {
     .productItem__introduction {
       display: flex;
       flex-direction: column;
+      width: 120%;
     }
   }
   &__name {

@@ -42,6 +42,7 @@
               class="productItem__addToCart"
               data-aos="flip-down"
               data-aos-mirror="true"
+              @click.prevent="addCart"
             >
               Add to Cart
             </button>
@@ -54,9 +55,12 @@
 </template>
 
 <script>
+import { onAuthStateChanged } from "@firebase/auth";
 import { mapStores } from "pinia";
 import { useProductsStore } from "../stores/products.js";
 import userCommentVue from "./userComment.vue";
+import { auth, db } from '../firebase/firebase.js';
+import { doc, getDoc } from '@firebase/firestore';
 export default {
   components:{
 userCommentVue
@@ -72,6 +76,20 @@ userCommentVue
       this.$route.params.productId
     );
   },
+  methods: {
+    addCart(e){
+      e.preventDefault();
+      onAuthStateChanged(auth, async (usuario) => {
+      if (usuario != null) {
+        const querySnapshot = await getDoc(doc(db, "users", usuario.uid));
+        this.user = querySnapshot.data();
+        this.productsStore.addToCart(usuario.uid, this.actualProduct)
+      } else {
+alert("logueate primero pls")
+      }
+    });
+    }
+  }
 };
 </script>
 

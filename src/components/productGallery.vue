@@ -29,18 +29,37 @@
 <script>
 import { mapStores } from "pinia";
 import { useProductsStore } from "../stores/products.js";
+import { onAuthStateChanged } from '@firebase/auth';
+import { auth } from '../firebase/firebase.js';
 export default {
   data() {
     return {};
   },
   computed: {
     ...mapStores(useProductsStore),
-    allProducts() {      
+    allProducts() {   if(this.$route.fullPath === "/favorites") {
+      return this.productsStore.getCart;
+    } else {
       return this.productsStore.getProducts;
-    },
+    }
+
+      
+    }
   },
   mounted() {
-    this.productsStore.loadProducts();
+    if(this.$route.fullPath === "/favorites") {
+      onAuthStateChanged(auth, async (usuario) => {
+      if (usuario != null) {
+        this.productsStore.loadCart(usuario.uid)
+      } else {
+alert("logueate primero pls")
+      }
+    });
+    } else {
+      this.productsStore.loadProducts();
+    }
+    
+    //
    
     //console.log(this.winesStore.loadWines);
   },
@@ -66,6 +85,9 @@ export default {
   margin: 0px 10%;
   grid-template-columns: repeat(3, 5fr);
   gap: 10px;
+  a{
+    text-decoration: none;
+  }
 }
 
 #product {

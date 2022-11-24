@@ -12,18 +12,22 @@ export default {
     return {
       user: null,
       userlogged: false,
+      userAdmin: false
     };
   },
   computed: {
     ...mapStores(useAuthenticationStore),
   },
   mounted() {
+    this.authenticationStore.setUser()
     onAuthStateChanged(auth, async (usuario) => {
       if (usuario != null) {
         const querySnapshot = await getDoc(doc(db, "users", usuario.uid));
         this.user = querySnapshot.data();
         this.userlogged = true;
+        this.userAdmin = this.user.isAdmin;
       } else {
+        this.userAdmin = false;
         this.userlogged = false;
       }
     });
@@ -45,7 +49,8 @@ export default {
           <RouterLink to="/">HOME</RouterLink>
           <RouterLink to="/shop">SHOP</RouterLink>
           <RouterLink to="/">COLLECTION</RouterLink>
-          <RouterLink to="/add">ADD</RouterLink>
+          <RouterLink to="/add" v-if="userAdmin">ADD</RouterLink>
+          <RouterLink to="/" v-else></RouterLink>
           <img class="logo" src="../public/img/kaomojiLogo.svg" />
         </template>
 
@@ -70,7 +75,7 @@ export default {
           <RouterLink to="/"
             ><img class="icon" src="/img/svg/lupita.svg"
           /></RouterLink>
-          <RouterLink to="/"
+          <RouterLink to="/favorites"
             ><img class="icon cart" src="/img/svg/cart.svg"
           /></RouterLink>
         </template>

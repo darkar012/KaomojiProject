@@ -244,7 +244,8 @@ export const useProductsStore = defineStore("products", {
         filterProducts: []
     }),
     getters: {
-        getProducts: (state) => [...state.products]
+        getProducts: (state) => [...state.products],
+        getCart: (state) => [...state.shoppingCart]
     },
     actions: {
         async defineDocs() {
@@ -276,6 +277,30 @@ export const useProductsStore = defineStore("products", {
 
             )
         },
+        async loadCart(id){
+            const querySnapshot = await getDocs(collection(db, "users", "favorites", id));
+            querySnapshot.forEach((doc) => {
+
+                const product = {
+                    "id": doc.id,
+                    "name": doc.data().name,
+                    "description": doc.data().description,
+                    "price": doc.data().price,
+                    "type": doc.data().type,
+                    "year": doc.data().year,
+                    "imgUrl": doc.data().imgUrl
+                }
+
+                this.products.push(product);
+            });
+        },
+        async addToCart(id,product){
+            try {
+                await setDoc(doc(db, "users", "favorites", id, crypto.randomUUID()), product);
+            } catch (error) {
+                console.log(error)
+            }
+        },
         newProduct(product) {
             this.products.push(product);
             this.localStorageProducts.push(product);
@@ -284,7 +309,7 @@ export const useProductsStore = defineStore("products", {
         loadProducts() {
             this.products = [];
             this.defineDocs();
-            console.log(this.products)
+           // console.log(this.products)
 
             /*this.localStorageProducts = JSON.parse(localStorage.getItem('products'));
             this.products = this.products.concat([this.localStorageProducts.values()]);*/

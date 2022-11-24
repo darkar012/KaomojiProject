@@ -21,7 +21,7 @@ export const useAuthenticationStore = defineStore("authentication", {
     actions: {
 
         signIn(email, password) {
-            signInWithEmailAndPassword(auth, email, password).then(onAuthStateChanged(auth,this.setUser()) )
+            signInWithEmailAndPassword(auth, email, password)
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;

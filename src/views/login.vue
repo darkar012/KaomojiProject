@@ -1,7 +1,6 @@
 <template>
   <section>
-    <button @click.prevent="logOut" >logout</button>
-    <div class="main">
+      <div class="main">
       <input type="checkbox" id="chk" aria-hidden="true" />
 
       <div class="signup">
@@ -44,6 +43,7 @@
             id="userSignIn"
             placeholder="Email"
             required="true"
+            v-model="email"
           />
           <input
             type="password"
@@ -51,6 +51,7 @@
             id="pswdSignIn"
             placeholder="Password"
             required="true"
+            v-model="password"
           />
           <button @click.prevent="signIn">Login</button>
         </form>

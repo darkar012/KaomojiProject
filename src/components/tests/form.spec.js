@@ -1,7 +1,7 @@
 import { mount } from "@vue/test-utils";
-import { describe, it } from "vitest";
+import { createPinia, setActivePinia } from "pinia";
+import { beforeEach, describe, expect, it, vitest } from "vitest";
 import form from "../form.vue";
-import Calendar from "../../../node_modules/primevue/calendar/Calendar.vue";
 
 describe("form component unit tests", () => {
   it("it renders the form", () => {
@@ -20,10 +20,27 @@ describe("InputImage component unit tests", () => {
   });
 });
 
-describe("NewProduct method unit tests", () => {
-  it("it saves the product", () => {
+describe("addProduct unit tests", () => {
+  it("it upload products", () => {
     const wrapper = mount(form);
-    wrapper.find("#images").setValue("");
-    wrapper.
+    // const mockMethod = vitest.fn();
+    // wrapper.vm.createNewProduct = mockMethod;
+
+    wrapper.find(".submit").trigger("click");
+
+    expect(wrapper.vm.createNewProduct).toBeTruthy();
+  });
+  beforeEach(() => {
+    setActivePinia(createPinia());
+  });
+
+  describe("InputImage component unit tests", () => {
+    it("it save the image", () => {
+      const wrapper = mount(form);
+
+      wrapper.find("#yearPicker").attributes("v-model");
+
+      expect(wrapper.vm.readImage).toBeTruthy();
+    });
   });
 });

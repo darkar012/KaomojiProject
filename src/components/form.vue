@@ -298,25 +298,45 @@ export default {
       var arr = Array.from(typeProduct);
       let descripProduct = document.getElementById("descriptionProduct");
 
-      const id= productName.value.toLowerCase();
+let product = ""
+
+if (yearProduct == null) {
+      const newProduct = {
+        id: "",
+        name: "yolo",
+        price: "2" ,
+        year:"2022",
+        type: "type",
+        collection: "23",
+        description: "nose",
+        imgUrl: "weno",
+      };
+      product = newProduct;
+} else {
+  const id= productName.value.toLowerCase();
       const newProduct = {
         id: id,
-        name: productName.value,
-        price: "€"+ price.value + ".95",
-        year: yearProduct.value,
-        type: arr[0].value,
-        collection: arr[1].value,
-        description: descripProduct.value,
-        imgUrl: this.producImage,
+        name: productName.value ,
+        price: "€"+ price.value + ".95" ,
+        year: yearProduct.value ,
+        type: arr[0].value ,
+        collection: arr[1].value ,
+        description: descripProduct.value ,
+        imgUrl: this.producImage ,
       };
-      this.productsStore.newProduct(newProduct);
-      console.log(newProduct);
+      product = newProduct;
+}
+      
+      
+      this.productsStore.newProduct(product);
+      if (product.id !== ''){
       productName.value = "";
       price.value = "";
       yearProduct.value = "";
       typeProduct.value = "";
       collectionProduct.value = "";
       descripProduct.value = "";
+    }
     },
     readImage(e) {
       var files = e.target.files || e.dataTransfer.files;
@@ -324,11 +344,6 @@ export default {
         return;
       }
       this.createImage(files[0])
-      /*this.reader.readAsDataURL(e.target.files[0]);
-      this.reader.addEventListener("load", () => {
-        this.imgURL = this.reader.result;
-        
-      });*/
     },
     createImage(file){
       var reader = new FileReader();
@@ -337,10 +352,8 @@ export default {
         vm.producImage = e.target.result;
       }
       reader.readAsDataURL(file);
-    },
-    removeImage: function(e){
-      this.producImage ="";
-    },
+      return file
+    }
   },
 };
 </script>

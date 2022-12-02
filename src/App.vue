@@ -69,7 +69,7 @@ export default {
           >
           <RouterLink to="/" class="us" id="logOut" v-else></RouterLink>
 
-          <RouterLink to="/login"
+          <RouterLink to="/profile"
             ><font-awesome-icon icon="fa-regular fa-user"
           /></RouterLink>
           <RouterLink to="/"

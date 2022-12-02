@@ -33,14 +33,4 @@ describe("addProduct unit tests", () => {
   beforeEach(() => {
     setActivePinia(createPinia());
   });
-
-  describe("InputImage component unit tests", () => {
-    it("it save the image", () => {
-      const wrapper = mount(form);
-
-      wrapper.find("#yearPicker").attributes("v-model");
-
-      expect(wrapper.vm.readImage).toBeTruthy();
-    });
-  });
 });

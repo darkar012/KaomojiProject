@@ -7,6 +7,7 @@ import {
   deleteUser,
   updateEmail,
   updatePassword,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth } from "./firebase";
 import {
@@ -134,6 +135,9 @@ export const useAuthenticationStore = defineStore("authentication", {
         .catch((error) => {
           alert(error);
         });
+    },
+    emailPassword(email) {
+      sendPasswordResetEmail(auth, email);
     },
   },
 });

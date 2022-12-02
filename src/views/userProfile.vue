@@ -52,7 +52,9 @@
       <button class="eliminate" @click="eliminateUser">
         Eliminate Account
       </button>
-      <button class="eliminate">Send a Message to Change?</button>
+      <button class="eliminate" @click="ChangePasswordEmail">
+        Send a Message to Change?
+      </button>
     </div>
   </div>
   <titleVue title="we recommend you"></titleVue>
@@ -225,6 +227,7 @@ export default {
       password: "",
       username: "",
       actualEmail: "",
+      emailExtra: "",
       actualpassword: "",
       changeDisplay: false,
       changeBtn: true,
@@ -242,9 +245,10 @@ export default {
         const querySnapshot = await getDoc(doc(db, "users", usuario.uid));
         this.user = querySnapshot.data();
         this.email = this.user.email;
+        this.emailExtra = this.user.email;
         this.username = this.user.username;
       } else {
-        router.push({ name: "home" });
+        router.push({ name: "404Error" });
       }
     });
   },
@@ -278,6 +282,9 @@ export default {
         this.actualpassword,
         this.password
       );
+    },
+    ChangePasswordEmail(e) {
+      this.authenticationStore.emailPassword(this.emailExtra);
     },
   },
 };

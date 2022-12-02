@@ -49,6 +49,12 @@ const router = createRouter({
       //component: AboutUs
       component: () => import("../views/userProfile.vue"),
     },
+    {
+      path: "/error",
+      name: "404Error",
+      //component: AboutUs
+      component: () => import("../views/404.vue"),
+    },
   ],
 });
 

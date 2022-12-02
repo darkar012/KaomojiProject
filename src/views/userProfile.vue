@@ -58,10 +58,16 @@
     </div>
   </div>
   <titleVue title="we recommend you"></titleVue>
+  <img class="meme" src="/img/recommend.jpg" />
 </template>
 <style lang="scss">
 .title {
   margin-top: 4%;
+}
+.meme {
+  width: 20%;
+  margin-left: 200px;
+  margin-bottom: 20px;
 }
 
 $gray: #777777;

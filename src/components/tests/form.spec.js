@@ -5,17 +5,8 @@ import calendar from "primevue/calendar"
 
 describe ("form component unit tests",  () => {
 
-    it("it renders the modal", () => {
+    it("it renders the form", () => {
         const wrapper = mount (form)
-        expect (wrapper).toBeTruthy()
-    })
-
-})
-
-describe ("Calendar component unit tests",  () => {
-
-    it("it renders the modal", () => {
-        const wrapper = mount (calendar)
         expect (wrapper).toBeTruthy()
     })
 

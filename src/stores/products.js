@@ -4,8 +4,8 @@ import { db, storage } from "../firebase/firebase";
 import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 
 export const useProductsStore = defineStore("products", {
-    state: () => ({
-       /* products: [
+  state: () => ({
+    /* products: [
             {
                 id: "53057f24-c17d-4d94-ba83-0147277f1f01",
                 name: "YOZAKURA • HOODIE",
@@ -236,87 +236,125 @@ export const useProductsStore = defineStore("products", {
                 collection: 'HANAMI //SS2022'
             }
         ],*/
-        
-        products: [],
-        firebaseProducts: [],
-        cart: null,
-        shoppingCart: [],
-        filterProducts: []
-    }),
-    getters: {
-        getProducts: (state) => [...state.products],
-        getCart: (state) => [...state.shoppingCart]
-    },
-    actions: {
-        async defineDocs() {
-            const querySnapshot = await getDocs(collection(db, "products"));
-            querySnapshot.forEach((doc) => {
 
-                const product = {
-                    "id": doc.id,
-                    "name": doc.data().name,
-                    "description": doc.data().description,
-                    "price": doc.data().price,
-                    "type": doc.data().type,
-                    "year": doc.data().year,
-                    "imgUrl": doc.data().imgUrl
-                }
-
-                this.products.push(product);
-            });
+    products: [],
+    firebaseProducts: [],
+    cart: null,
+    shoppingCart: [],
+    filterProducts: [],
+  }),
+  getters: {
+    getProducts: (state) => [...state.products],
+    getCart: (state) => [...state.shoppingCart],
+  },
+  actions: {
+    async defineDocs() {
+      const querySnapshot = await getDocs(collection(db, "products"));
+      console.log(JSON.stringify(querySnapshot));
+      querySnapshot.forEach((doc) => {
+        if (doc.id === "test") {
+          const product = {
+            id: doc.id,
+            name: doc.name,
+            description: doc.description,
+            price: doc.price,
+            type: doc.type,
+            year: doc.year,
+            imgUrl: doc.imgUrl,
+          };
+          this.products.push(product);
+        } else {
+          const product = {
+            id: doc.id,
+            name: doc.data().name,
+            description: doc.data().description,
+            price: doc.data().price,
+            type: doc.data().type,
+            year: doc.data().year,
+            imgUrl: doc.data().imgUrl,
+          };
+          this.products.push(product);
         }
-        ,
-        async uploadProducts() {
-            this.products.forEach(async (data) => {
-                try {
-                    await setDoc(doc(db, "products", data.id), data);
-                } catch (error) {
-                    console.log(error)
-                }
-            }
-
-            )
-        },
-        async loadCart(id){
-            const querySnapshot = await getDocs(collection(db, "users", "favorites", id));
-            querySnapshot.forEach((doc) => {
-
-                const product = {
-                    "id": doc.id,
-                    "name": doc.data().name,
-                    "description": doc.data().description,
-                    "price": doc.data().price,
-                    "type": doc.data().type,
-                    "year": doc.data().year,
-                    "imgUrl": doc.data().imgUrl
-                }
-
-                this.products.push(product);
-            });
-        },
-        async addToCart(id,product){
-            try {
-                await setDoc(doc(db, "users", "favorites", id, crypto.randomUUID()), product);
-            } catch (error) {
-                console.log(error)
-            }
-        },
-        newProduct(product) {
-            this.products.push(product);
-            this.localStorageProducts.push(product);
-            localStorage.setItem('products', JSON.stringify(this.products));
-        },
-        loadProducts() {
-            this.products = [];
-            this.defineDocs();
-           // console.log(this.products)
-
-            /*this.localStorageProducts = JSON.parse(localStorage.getItem('products'));
-            this.products = this.products.concat([this.localStorageProducts.values()]);*/
-        },
-        getProductById(id) {
-            const filteredProducts = this.products.filter((element) => id.toLowerCase() === element.id.toLowerCase());
-            return filteredProducts ? { ...filteredProducts[0] } : null
-        },
+      });
+    },
+    /* async uploadProducts() {
+      this.products.forEach(async (data) => {
+        try {
+          await setDoc(doc(db, "products", data.id), data);
+        } catch (error) {
+          console.log(error);
+        }
+      });
     }
-})
+    
+    */
+    async loadCart(id) {
+      const querySnapshot = await getDocs(
+        collection(db, "users", "favorites", id)
+      );
+
+      querySnapshot.forEach((doc) => {
+        if (doc.id === "test") {
+          const product = {
+            id: doc.id,
+            name: doc.name,
+            description: doc.description,
+            price: doc.price,
+            type: doc.type,
+            year: doc.year,
+            imgUrl: doc.imgUrl,
+          };
+          this.products.push(product);
+        } else {
+          const product = {
+            id: doc.id,
+            name: doc.data().name,
+            description: doc.data().description,
+            price: doc.data().price,
+            type: doc.data().type,
+            year: doc.data().year,
+            imgUrl: doc.data().imgUrl,
+          };
+        }
+      });
+    },
+    async addToCart(id, product) {
+      try {
+        await setDoc(
+          doc(db, "users", "favorites", id, crypto.randomUUID()),
+          product
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    newProduct(product) {
+      if (product.id !== "") {
+        this.products.push(product);
+        //this.localStorageProducts.push(product);
+        // localStorage.setItem("products", JSON.stringify(this.products));
+        this.products.forEach(async (doc) => {
+          try {
+            await setDoc(doc(db, "products", crypto.randomUUID()), product);
+          } catch (error) {
+            console.log(error);
+          }
+        });
+      }
+    },
+    loadProducts() {
+      this.products = [];
+      this.defineDocs();
+      // console.log(this.products)
+
+      /*this.localStorageProducts = JSON.parse(localStorage.getItem('products'));
+            this.products = this.products.concat([this.localStorageProducts.values()]);*/
+    },
+    getProductById(id) {
+      const filteredProducts = this.products.filter(
+        (element) => id.toLowerCase() === element.id.toLowerCase()
+      );
+      return filteredProducts ? { ...filteredProducts[0] } : null;
+    },
+  },
+});
